@@ -343,7 +343,7 @@ export default async function restaurantView() {
   const graph2 = await createBarChart(1);
 
   return (
-    <main className="flex min-h-screen flex-col items-center justify-between p-12">
+    <main className="flex min-h-screen flex-col items-center justify-between p-12 m-auto">
       <div className="flex flex-col">
         {/* PAGE HEADER */}
         <div className="flex gap-5 max-md:flex-wrap">
