@@ -1,36 +1,51 @@
 import Image from "next/image";
 import { FaHome } from "react-icons/fa";
 import { FaPeoplePulling } from "react-icons/fa6";
-import { IoMdNotifications } from "react-icons/io";
+import { IoIosSettings, IoMdNotifications } from "react-icons/io";
+import { IoLogOut } from "react-icons/io5";
 import { MdAnalytics } from "react-icons/md";
 
 const HomeButton = () => (
-  <div className="flex content-center gap-2 ml-5">
+  <div className="flex content-center gap-2 ml-7">
     <FaHome className="self-center size-5" />
     <p className="self-center">Home</p>
   </div>
 );
 
 const AnalyticsButton = () => (
-  <div className="flex content-center gap-2 ml-5">
+  <div className="flex content-center gap-2 ml-7">
     <MdAnalytics className="self-center size-5" />
     <p className="self-center">Analytics</p>
   </div>
 );
 
 const NotificationButton = () => (
-  <div className="flex content-center gap-2 ml-5">
+  <div className="flex content-center gap-2 ml-7">
     <IoMdNotifications className="self-center size-5" />
     <p className="self-center">Notifications</p>
   </div>
 );
 
 const CutomersButton = () => (
-    <div className="flex content-center gap-2 ml-5">
-      <FaPeoplePulling className="self-center size-5" />
-      <p className="self-center">Customers</p>
-    </div>
-  );
+  <div className="flex content-center gap-2 ml-7">
+    <FaPeoplePulling className="self-center size-5" />
+    <p className="self-center">Customers</p>
+  </div>
+);
+
+const SettingButton = () => (
+  <div className="flex content-center gap-2 ml-7">
+    <IoIosSettings className="self-center size-5" />
+    <p className="self-center">Settings</p>
+  </div>
+);
+
+const LogOutButton = () => (
+  <div className="flex content-center gap-2 ml-7">
+    <IoLogOut className="self-center size-5" />
+    <p className="self-center">Logout</p>
+  </div>
+);
 
 export default function NavBar() {
   return (
@@ -49,6 +64,11 @@ export default function NavBar() {
       <AnalyticsButton />
       <NotificationButton />
       <CutomersButton />
+
+      <div className="flex flex-col gap-5 mt-auto mb-10">
+        <SettingButton />
+        <LogOutButton />
+      </div>
     </nav>
   );
 }
