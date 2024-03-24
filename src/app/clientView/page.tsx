@@ -1,7 +1,7 @@
 import { Int32 } from "mongodb";
 import Image from "next/image";
 import React from "react";
-import Chart from "./chart";
+import Chart from "./Chart";
 import { create } from "domain";
 const { MongoClient, ObjectId } = require("mongodb");
 var totalFeedback: number;
@@ -343,7 +343,7 @@ export default async function restaurantView() {
   const graph2 = await createBarChart(1);
 
   return (
-    <main className="flex min-h-screen flex-col items-center justify-between p-12 m-auto">
+    <main className="flex min-h-screen flex-col items-center justify-between p-12">
       <div className="flex flex-col">
         {/* PAGE HEADER */}
         <div className="flex gap-5 max-md:flex-wrap">
@@ -502,7 +502,6 @@ export default async function restaurantView() {
                     className="shrink-0 self-start aspect-square w-[50px] mt-6"
                   />
                   <div className="flex flex-col">
-                    {/* TODO: fix value */}
                     <div className="text-lg">Detractors</div>
                     <div className="self-center mt-2 ml-4 text-4xl">{Math.round(numDemoters*100/(numPromoters+numDemoters))}%</div>
                   </div>
@@ -516,9 +515,8 @@ export default async function restaurantView() {
                     className="shrink-0 self-start aspect-square w-[50px] mt-6"
                   />
                   <div className="flex flex-col">
-                    {/* TODO: Fix value */}
                     <div className="text-lg">Passive</div>
-                    <div className="mt-2 ml-4 text-4xl">4%</div>
+                    <div className="mt-2 ml-4 text-4xl">0%</div>
                   </div>
                 </div>
               </div>
