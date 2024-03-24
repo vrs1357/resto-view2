@@ -434,7 +434,7 @@ export default async function restaurantView() {
                     <div className="flex gap-3.5 mt-3.5 whitespace-nowrap">
                       {/* TODO: replace number with correct value */}
                       <div className="grow text-6xl text-blue-500 max-md:text-4xl ml-12">
-                        {Math.round(totalRating/totalFeedback)}
+                        {(totalRating/totalFeedback).toFixed(2)}
                       </div>
                       <div className="flex flex-1  gap-1.5 self-end mt-8 text-base text-green-600">
                         <img
