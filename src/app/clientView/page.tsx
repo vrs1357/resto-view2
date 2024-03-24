@@ -1,39 +1,45 @@
+`use client`
 import Image from "next/image";
 
-export default function Home() {
+export default function restaurantView() {
+
+  
+
+
   return (
     <main className="flex min-h-screen flex-col items-center justify-between p-24">
     <div className = "flex flex-col">
       {/* PAGE HEADER */}
       <div className="flex gap-5 max-md:flex-wrap">
-      <div className="flex-auto my-auto text-2xl font-semibold text-black">
+      <div className="flex-auto my-auto text-3xl font-semibold text-black">
         Feedback Overview
       </div>
       <div className="flex gap-5 justify-between text-lg text-blue-500">
-        <div className="flex gap-4 px-3.5 py-2 bg-white border border-solid border-neutral-400">
+        <div className="flex gap-4 px-3.5 py-2 bg-white border border-solid border-neutral-400 rounded-md">
           <div className="flex-auto">Monthly ROI</div>
           <img
             loading="lazy"
             src="https://cdn.builder.io/api/v1/image/assets/TEMP/cacafd82b00351889dc98c66153e26a09297173d2232fbe31e23b206ab96df75?"
-            className="shrink-0 my-auto w-2 border border-black border-solid aspect-square fill-black stroke-[1px] stroke-black"
+            className="rotate-180 shrink-0 my-auto w-2 aspect-square fill-black stroke-[1px] stroke-black"
           />
         </div>
-        <div className="flex gap-3.5 px-3.5 py-2 bg-white border border-solid border-neutral-400">
+        {/* TODO: efficient implementation of dropdown menu (why tf it so hard) */}
+        <div className="flex gap-3.5 px-3.5 py-2 bg-white border border-solid border-neutral-400 rounded-md">
           <div className="grow">Acquisition Sources</div>
           <img
             loading="lazy"
             src="https://cdn.builder.io/api/v1/image/assets/TEMP/cacafd82b00351889dc98c66153e26a09297173d2232fbe31e23b206ab96df75?"
-            className="shrink-0 my-auto w-2 border border-black border-solid aspect-square fill-black stroke-[1px] stroke-black"
+            className="rotate-180 shrink-0 my-auto w-2 aspect-square fill-black stroke-[1px] stroke-black"
           />
         </div>
       </div>
     </div>
 
       {/* HIGHLIGHTED ANALYTICS */}
-      <div className="flex flex-col">
+      <div className="flex flex-col mt-10">
       <div className="px-5 w-full max-md:max-w-full">
         <div className="flex gap-5 max-md:flex-col max-md:gap-0">
-          <div className="flex flex-col w-[33%] max-md:ml-0 max-md:w-full">
+          <div className="flex flex-col w-[33%] max-md:ml-0 max-md:w-full drop-shadow-lg">
             <div className="flex flex-col grow pt-6 mx-auto w-full bg-white rounded-xl shadow-sm max-md:mt-10">
               <div className="mx-8 text-lg font-medium text-black max-md:mx-2.5">
                 How were customers feeling in past week they visited your
@@ -48,11 +54,7 @@ export default function Home() {
                   />
                   {/* TODO: replace number with correct value */}
                   <div className="self-stretch my-auto">87.4%</div>
-                  <img
-                    loading="lazy"
-                    src="https://cdn.builder.io/api/v1/image/assets/TEMP/0590a4ed977c9428d560a90d586210ea4bfb5765668ac7013e648a716da33f31?"
-                    className="shrink-0 self-stretch my-auto w-1.5 aspect-[1.2] fill-black"
-                  />
+                 
                 </div>
                 <div className="flex flex-1 gap-2 items-center text-red-500">
                   <img
@@ -62,11 +64,6 @@ export default function Home() {
                   />
                   {/* TODO: replace number with correct value */}
                   <div className="self-stretch my-auto">12.6%</div>
-                  <img
-                    loading="lazy"
-                    src="https://cdn.builder.io/api/v1/image/assets/TEMP/409988b47bc0706aa1c4c2850d72f1bb7b394bed1f05526c5775c041992d1ce7?"
-                    className="shrink-0 self-stretch my-auto w-1.5 aspect-[1.2] fill-black"
-                  />
                 </div>
               </div>
               <div className="flex flex-col pb-2 mt-5 rounded-lg bg-zinc-400">
@@ -74,7 +71,7 @@ export default function Home() {
               </div>
             </div>
           </div>
-          <div className="flex flex-col ml-5 w-[33%] max-md:ml-0 max-md:w-full">
+          <div className="flex flex-col ml-5 w-[33%] max-md:ml-0 max-md:w-full drop-shadow-lg">
             <div className="flex flex-col grow items-center pt-10 mx-auto w-full bg-white rounded-xl shadow-sm max-md:mt-10">
               <div className="text-2xl font-semibold text-black">
                 Total Feedback
@@ -88,18 +85,18 @@ export default function Home() {
                   <img
                     loading="lazy"
                     src="https://cdn.builder.io/api/v1/image/assets/TEMP/80d2f014ca2edd76d94714a3c3dd7fcbc0b60351c58129f7e943dc9698c098dc?"
-                    className="shrink-0 self-start aspect-square fill-green-600 w-[9px]"
+                    className="shrink-0 self-start aspect-square fill-green-600 w-[9px] mt-2"
                   />
                   {/* TODO: replace number with correct value */}
                   <div>5.8%</div>
                 </div>
               </div>
-              <div className="flex flex-col self-stretch pb-2.5 mt-11 bg-blue-500 rounded-lg max-md:mt-10">
+              <div className="flex flex-col self-stretch pb-2.5 mt-12 bg-blue-500 rounded-lg max-md:mt-10">
                 <div className="z-10 shrink-0 h-4 bg-white" />
               </div>
             </div>
           </div>
-          <div className="flex flex-col ml-5 w-[33%] max-md:ml-0 max-md:w-full">
+          <div className="flex flex-col ml-5 w-[33%] max-md:ml-0 max-md:w-full drop-shadow-lg" >
             <div className="flex flex-col grow items-center pt-10 mx-auto w-full bg-white rounded-xl shadow-sm max-md:mt-10">
               <div className="text-2xl font-semibold text-black">
                 Average Rating
@@ -109,11 +106,11 @@ export default function Home() {
                 <div className="grow text-6xl text-blue-500 max-md:text-4xl">
                   4.3
                 </div>
-                <div className="flex flex-1 gap-1.5 self-end mt-8 text-base text-green-600">
+                <div className="flex flex-1  gap-1.5 self-end mt-8 text-base text-green-600">
                   <img
                     loading="lazy"
                     src="https://cdn.builder.io/api/v1/image/assets/TEMP/80d2f014ca2edd76d94714a3c3dd7fcbc0b60351c58129f7e943dc9698c098dc?"
-                    className="shrink-0 self-start aspect-square fill-green-600 w-[9px]"
+                    className="shrink-0 self-start aspect-square fill-green-600 w-[9px] align-bottom mt-2"
                   />
                   {/* TODO: replace number with correct value */}
                   <div>0.47%</div>
@@ -137,36 +134,37 @@ export default function Home() {
       {/* MAIN ANALYTICS */}
       <div className="flex flex-col pb-3.5">
       <div className="w-full bg-blue-500 min-h-[7px] max-md:max-w-full" />
-      <div className="z-10 justify-center items-start px-5 py-6 w-full text-2xl font-semibold text-black whitespace-nowrap bg-blue-50 max-md:pr-5 max-md:max-w-full">
+      <div className="z-10 justify-center items-start px-5 py-6 w-full text-2xl font-semibold text-black whitespace-nowrap bg-blue-50 max-md:pr-5 max-md:max-w-full rounded-md">
         Analytics
       </div>
       <div className="justify-center items-center px-16 py-2 w-full text-lg font-semibold text-white bg-blue-900 rounded-xl max-md:px-5 max-md:max-w-full">
         NET PROMOTER SCORE
       </div>
-      {/* TODO: Fix Net Promoter score view */}
       <div className="w-full bg-white min-h-[30px] max-md:max-w-full" />
       <div className="self-center px-5 mt-2 w-full max-w-[954px] max-md:max-w-full">
         <div className="flex gap-5 max-md:flex-col max-md:gap-0">
           <div className="flex flex-col w-[38%] max-md:ml-0 max-md:w-full">
-            <div className="flex flex-col grow text-black max-md:mt-10">
+            <div className="flex flex-col grow text-black max-md:mt-10 ">
               <div className="text-2xl font-medium">Net Promoter Score</div>
-              <div className="mt-3.5 text-lg">% Promoters - % Detractors</div>
-              <div className="self-center mt-5 text-6xl max-md:text-4xl">
+              <div className="mt-1 text-md">% Promoters - % Detractors</div>
+              {/* TODO: fix value */}
+              <div className="self-center mt-5 text-6xl max-md:text-4xl mb-10 mr-20">
                 +91
               </div>
             </div>
           </div>
+          <div className="h-40 w-1 bg-black"></div>
           <div className="flex flex-col ml-5 w-[22%] max-md:ml-0 max-md:w-full">
             <div className="flex gap-0 items-start self-stretch my-auto text-black whitespace-nowrap max-md:mt-10">
               <img
                 loading="lazy"
                 src="https://cdn.builder.io/api/v1/image/assets/TEMP/ca12dd765bdb37610e8f4dc6a195176b70f811f5b0903ed2d933d2a01b33046c?"
-                className="shrink-0 mt-1.5 aspect-square w-[50px]"
+                className="shrink-0 mt-6 aspect-square w-[50px]"
               />
               {/* TODO: Fix value */}
               <div className="flex flex-col">
                 <div className="text-lg">Promoters</div>
-                <div className="mt-3.5 text-4xl">84%</div>
+                <div className="mt-2 text-4xl ml-4">84%</div>
               </div>
             </div>
           </div>
@@ -175,12 +173,12 @@ export default function Home() {
               <img
                 loading="lazy"
                 src="https://cdn.builder.io/api/v1/image/assets/TEMP/4f1f0d28e3b3babfd809be6aab75265b53d97bb309e53a466cee422ed726b72a?"
-                className="shrink-0 self-start aspect-square w-[50px]"
+                className="shrink-0 self-start aspect-square w-[50px] mt-6"
               />
               <div className="flex flex-col">
                 {/* TODO: fix value */}
                 <div className="text-lg">Detractors</div>
-                <div className="self-center mt-3.5 text-4xl">8%</div>
+                <div className="self-center mt-2 ml-4 text-4xl">8%</div>
               </div>
             </div>
           </div>
@@ -189,12 +187,12 @@ export default function Home() {
               <img
                 loading="lazy"
                 src="https://cdn.builder.io/api/v1/image/assets/TEMP/cbc33a071aa6a7e9174877c6fe5f0f4ec8a8b110788769b7d786939256494b4f?"
-                className="shrink-0 self-start aspect-square w-[50px]"
+                className="shrink-0 self-start aspect-square w-[50px] mt-6"
               />
               <div className="flex flex-col">
                 {/* TODO: Fix value */}
                 <div className="text-lg">Passive</div>
-                <div className="mt-3.5 text-4xl">4%</div>
+                <div className="mt-2 ml-4 text-4xl">4%</div>
               </div>
             </div>
           </div>
@@ -204,7 +202,7 @@ export default function Home() {
 
       {/* DATA ANALYTICS */}
       <div className="flex flex-col">
-      <div className="justify-center items-center px-16 py-2.5 w-full text-lg font-semibold text-white bg-blue-900 max-md:px-5 max-md:max-w-full">
+      <div className="justify-center items-center px-16 py-2.5 w-full text-lg font-semibold text-white bg-blue-900 max-md:px-5 max-md:max-w-full rounded-xl">
         FEEDBACK TRENDS
       </div>
       <div className="self-center mt-4 w-full max-w-[1020px] max-md:max-w-full">
