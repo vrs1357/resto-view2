@@ -1,7 +1,7 @@
 import { Int32 } from "mongodb";
 import Image from "next/image";
 import React from "react";
-import Chart from "./Chart";
+import Chart from "./chart";
 import { create } from "domain";
 const { MongoClient, ObjectId } = require("mongodb");
 async function createBarChart() {
@@ -215,7 +215,7 @@ export default async function restaurantView() {
   const graph = await createBarChart();
 
   return (
-    <main className="flex min-h-screen flex-col items-center justify-between p-12">
+    <main className="flex min-h-screen flex-col items-center justify-between p-12 m-auto">
       <div className="flex flex-col">
         {/* PAGE HEADER */}
         <div className="flex gap-5 max-md:flex-wrap">

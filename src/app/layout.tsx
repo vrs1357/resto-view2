@@ -17,7 +17,7 @@ export default function RootLayout({
     <html className={inter.className} lang="en">
       <body className="flex ml-[240px] flex-grow overflow-auto">
         <NavBar />
-        <div className="m-auto">{children}</div>
+        {children}
       </body>
     </html>
   );
