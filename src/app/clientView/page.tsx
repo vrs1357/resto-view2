@@ -7,7 +7,7 @@ export default function restaurantView() {
 
 
   return (
-    <main className="flex min-h-screen flex-col items-center justify-between p-24">
+    <main className="flex min-h-screen flex-col items-center justify-between p-12">
     <div className = "flex flex-col">
       {/* PAGE HEADER */}
       <div className="flex gap-5 max-md:flex-wrap">
@@ -40,12 +40,11 @@ export default function restaurantView() {
       <div className="px-5 w-full max-md:max-w-full">
         <div className="flex gap-5 max-md:flex-col max-md:gap-0">
           <div className="flex flex-col w-[33%] max-md:ml-0 max-md:w-full drop-shadow-lg">
-            <div className="flex flex-col grow pt-6 mx-auto w-full bg-white rounded-xl shadow-sm max-md:mt-10">
+            <div className="flex flex-col grow pt-6 mx-auto w-full bg-white rounded-xl shadow-sm max-md:mt-10 border-b-6 border-zinc-400">
               <div className="mx-8 text-lg font-medium text-black max-md:mx-2.5">
-                How were customers feeling in past week they visited your
-                restaurant?
+                Customer Feedback over the past week
               </div>
-              <div className="flex gap-5 items-start mt-6 mr-7 ml-7 text-3xl whitespace-nowrap max-md:mx-2.5">
+              <div className="flex flex-wrap gap-5 items-start mt-6 mr-7 ml-7 mb-7 text-3xl whitespace-nowrap max-md:mx-2.5">
                 <div className="flex flex-1 gap-2 items-center text-green-600">
                   <img
                     loading="lazy"
@@ -53,7 +52,7 @@ export default function restaurantView() {
                     className="shrink-0 self-stretch aspect-square w-[50px]"
                   />
                   {/* TODO: replace number with correct value */}
-                  <div className="self-stretch my-auto">87.4%</div>
+                  <div className="self-stretch my-auto mr-9">87.4%</div>
                  
                 </div>
                 <div className="flex flex-1 gap-2 items-center text-red-500">
@@ -63,16 +62,14 @@ export default function restaurantView() {
                     className="shrink-0 self-stretch aspect-square w-[50px]"
                   />
                   {/* TODO: replace number with correct value */}
-                  <div className="self-stretch my-auto">12.6%</div>
+                  <div className="self-stretch my-auto mr-7">12.6%</div>
                 </div>
-              </div>
-              <div className="flex flex-col pb-2 mt-5 rounded-lg bg-zinc-400">
-                <div className="z-10 shrink-0 h-4 bg-white" />
               </div>
             </div>
           </div>
           <div className="flex flex-col ml-5 w-[33%] max-md:ml-0 max-md:w-full drop-shadow-lg">
-            <div className="flex flex-col grow items-center pt-10 mx-auto w-full bg-white rounded-xl shadow-sm max-md:mt-10">
+            <div className="flex flex-col grow items-center mx-auto w-full bg-white rounded-xl shadow-sm max-md:mt-10 border-b-6 border-blue-500">
+              <div className="m-auto">
               <div className="text-2xl font-semibold text-black">
                 Total Feedback
               </div>
@@ -91,13 +88,12 @@ export default function restaurantView() {
                   <div>5.8%</div>
                 </div>
               </div>
-              <div className="flex flex-col self-stretch pb-2.5 mt-12 bg-blue-500 rounded-lg max-md:mt-10">
-                <div className="z-10 shrink-0 h-4 bg-white" />
               </div>
             </div>
           </div>
           <div className="flex flex-col ml-5 w-[33%] max-md:ml-0 max-md:w-full drop-shadow-lg" >
-            <div className="flex flex-col grow items-center pt-10 mx-auto w-full bg-white rounded-xl shadow-sm max-md:mt-10">
+            <div className="flex flex-col grow items-center mx-auto w-full bg-white rounded-xl shadow-sm max-md:mt-10 border-b-6 border-zinc-400">
+              <div className="m-auto">
               <div className="text-2xl font-semibold text-black">
                 Average Rating
               </div>
@@ -116,8 +112,6 @@ export default function restaurantView() {
                   <div>0.47%</div>
                 </div>
               </div>
-              <div className="flex flex-col self-stretch pb-2.5 mt-12 rounded-lg bg-zinc-400 max-md:mt-10">
-                <div className="z-10 shrink-0 h-4 bg-white" />
               </div>
             </div>
           </div>

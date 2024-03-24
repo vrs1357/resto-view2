@@ -15,9 +15,12 @@ export default function RootLayout({
 }: Readonly<{ children: React.ReactNode }>) {
   return (
     <html className={inter.className} lang="en">
+      
       <body className="flex ml-[240px] flex-grow overflow-auto">
         <NavBar />
+        <div className="m-auto">
         {children}
+        </div>
       </body>
     </html>
   );
