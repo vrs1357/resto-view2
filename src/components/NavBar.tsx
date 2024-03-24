@@ -1,4 +1,5 @@
 import Image from "next/image";
+import Link from "next/link";
 import { FaHome } from "react-icons/fa";
 import { FaPeoplePulling } from "react-icons/fa6";
 import { IoIosSettings, IoMdNotifications } from "react-icons/io";
@@ -60,10 +61,15 @@ export default function NavBar() {
         />
         <h1 className="self-center">Restaurant Profile</h1>
       </div>
+
       <HomeButton />
-      <AnalyticsButton />
+      <Link href={"/clientView"}>
+        <AnalyticsButton />
+      </Link>
       <NotificationButton />
-      <CutomersButton />
+      <Link href={"/userView"}>
+        <CutomersButton />
+      </Link>
 
       <div className="flex flex-col gap-5 mt-auto mb-10">
         <SettingButton />
