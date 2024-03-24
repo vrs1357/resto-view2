@@ -1,7 +1,7 @@
 import { Int32 } from "mongodb";
 import Image from "next/image";
 import React from "react";
-import Chart from "./Chart";
+import Chart from "./chart";
 import { create } from "domain";
 const { MongoClient, ObjectId } = require("mongodb");
 var totalFeedback: number;
