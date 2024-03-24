@@ -1,0 +1,15 @@
+conn = new Mongo();
+db = conn.getDB("resto-view-db");
+
+result = db.users.insertMany([
+	{
+		username: 'alice',
+		password: '12345678'
+	},
+	{
+		username: 'bob',
+		password: '12345678'
+	}
+]);
+
+print(result);
