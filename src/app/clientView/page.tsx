@@ -1,9 +1,223 @@
-`use client`
+import { Int32 } from "mongodb";
 import Image from "next/image";
+import React from 'react';
+import Chart, { chart } from 'react-google-charts';
+const { MongoClient, ObjectId } = require('mongodb');
+type objType = {
+  _id: ObjectId
+  Number: Int32
+  Score: Number
+  Date: Int32
+  };
+async function createBarChart() {
+  // const svgRef = useRef();
+  let arr1, arr2, arr3, arr4, arr5, arr6, arr7;
+  let date: any = new Date();
+  const startYear = new Date(date.getFullYear(), 0,0);
+  const diffMilliseconds = date.getTime() - startYear.getTime();
+  const daysSinceStartOfYear = Math.floor(diffMilliseconds / (1000 * 60 * 60 * 24));
+
+  var day1 = new Array();
+  var day2 = new Array();
+  var day3 = new Array();
+  var day4 = new Array();
+  var day5 = new Array();
+  var day6 = new Array();
+  var day7 = new Array();
+  // obtaining data
+arr1 = await dbReader(daysSinceStartOfYear - 1);
+  if(arr1) {
+    arr1.forEach((review: any) => {
+      day1.push(review.Score);
+    })
+  }
+  arr2 = await dbReader(daysSinceStartOfYear - 2);
+  if(arr2) {
+    arr2.forEach((review: any) => {
+      day2.push(review.Score);
+    })
+  }
+  arr3 = await dbReader(daysSinceStartOfYear - 3);
+  if(arr3) {
+    arr3.forEach((review: any) => {
+      day3.push(review.Score);
+    })
+  }
+  arr4 = await dbReader(daysSinceStartOfYear - 4);
+  if(arr4) {
+    arr4.forEach((review: any) => {
+      day4.push(review.Score);
+    })
+  }
+  arr5 = await dbReader(daysSinceStartOfYear - 5);
+  if(arr5) {
+    arr5.forEach((review: any) => {
+      day5.push(review.Score);
+    })
+  }
+  arr6 = await dbReader(daysSinceStartOfYear - 6);
+  if(arr6) {
+    arr6.forEach((review: any) => {
+      day6.push(review.Score);
+    })
+  }
+  arr7 = await dbReader(daysSinceStartOfYear - 7);
+  if(arr7) {
+    arr7.forEach((review: any) => {
+      day7.push(review.Score);
+    })
+  }
+  // calculating data
+  let numpos = 0;
+  let numNeg = 0;
+  let total = 0;
+  for(var i = 0; i < day1.length; i++){
+    if(day1.at(i) >= 3){
+      numpos++;
+    } else {
+      numNeg++;
+    }
+    total++;
+  }
+  // Collating Data
+  var data0 = ["Date", "Total Reviews"];
+  var data1 = [date.getDate(), total];
+  var data00 = ["Date", "Positive Reviews"];
+  var data11 = [date.getDate(), numpos];
+  var data000 = ["Date", "Negative Reviews"];
+  var data111 = [date.getDate(), numNeg];
+  
+  numpos = 0;
+  numNeg = 0;
+  total = 0;
+  for(var i = 0; i < day2.length; i++){
+    if(day2.at(i) >= 3){
+      numpos++;
+    } else {
+      numNeg++;
+    }
+    total++;
+  }
+  var data2 = [date.getDate(), total];
+  var data22 = [date.getDate(), numpos];
+  var data222 = [date.getDate(), numNeg];
+
+  numpos = 0;
+  numNeg = 0;
+  total = 0;
+  for(var i = 0; i < day3.length; i++){
+    if(day3.at(i) >= 3){
+      numpos++;
+    } else {
+      numNeg++;
+    }
+    total++;
+  }
+  var data3 = [date.getDate(), total];
+  var data33 = [date.getDate(), numpos];
+  var data333 = [date.getDate(), numNeg];
+
+  numpos = 0;
+  numNeg = 0;
+  total = 0;
+  for(var i = 0; i < day4.length; i++){
+    if(day4.at(i) >= 3){
+      numpos++;
+    } else {
+      numNeg++;
+    }
+    total++;
+  }
+  var data4 = [date.getDate(), total];
+  var data44 = [date.getDate(), numpos];
+  var data444 = [date.getDate(), numNeg];
+
+  numpos = 0;
+  numNeg = 0;
+  total = 0;
+  for(var i = 0; i < day5.length; i++){
+    if(day5.at(i) >= 3){
+      numpos++;
+    } else {
+      numNeg++;
+    }
+    total++;
+  }
+  var data5 = [date.getDate(), total];
+  var data55 = [date.getDate(), numpos];
+  var data555 = [date.getDate(), numNeg];
+
+  numpos = 0;
+  numNeg = 0;
+  total = 0;
+  for(var i = 0; i < day6.length; i++){
+    if(day6.at(i) >= 3){
+      numpos++;
+    } else {
+      numNeg++;
+    }
+    total++;
+  }
+  var data6 = [date.getDate(), total];
+  var data66 = [date.getDate(), numpos];
+  var data666 = [date.getDate(), numNeg];
+
+  numpos = 0;
+  numNeg = 0;
+  total = 0;
+  for(var i = 0; i < day7.length; i++){
+    if(day7.at(i) >= 3){
+      numpos++;
+    } else {
+      numNeg++;
+    }
+    total++;
+  }
+  var data7 = [date.getDate(), total];
+  var data77 = [date.getDate(), numpos];
+  var data777 = [date.getDate(), numNeg];
+
+  const totalData = [data0, data1, data2, data3, data4, data5, data6, data7];
+  
+  const options = {
+    chart: {
+      title: "Total Reviews over Time"
+    },
+  };
+  return (
+      <Chart
+      chartType="Bar"
+      width="100%"
+      height="400px"
+      data = {totalData}
+      options={options}
+    />
+  );
+}
+
+
+async function dbReader(request: any) {
+  const client = new MongoClient("mongodb://127.0.0.1:27017");
+  try {
+      let database = client.db("resto-view-db");
+      await client.connect();
+      console.log("Connected to DB");
+      let reviews = database.collection('reviews');
+      const query = {Date:request};
+      const toReturn = await reviews.find(query).toArray();
+      await client.close();
+      return toReturn;
+  } catch {
+    await client.close();
+    console.log("error - see stack trace");
+    return new Array(0);
+  }
+  
+}
 
 export default function restaurantView() {
 
-  
+  createBarChart();
 
 
   return (
@@ -202,116 +416,7 @@ export default function restaurantView() {
       <div className="self-center mt-4 w-full max-w-[1020px] max-md:max-w-full">
         <div className="flex gap-5 max-md:flex-col max-md:gap-0">
           {/* TODO: d3.js Graphs GO HERE */}
-              <div className="flex flex-col w-[56%] max-md:ml-0 max-md:w-full">
-                <div className="flex flex-col grow max-md:mt-8 max-md:max-w-full">
-                  <div className="flex gap-0 max-md:flex-wrap">
-                    <div className="flex z-10 flex-col">
-                      <div className="justify-center px-2 py-1.5 text-sm text-blue-500 whitespace-nowrap bg-white border border-solid border-neutral-400">
-                        Positive/Negative
-                      </div>
-                      <div className="flex gap-0.5 px-5 mt-4 text-xs font-semibold text-black">
-                        <img
-                          loading="lazy"
-                          src="https://cdn.builder.io/api/v1/image/assets/TEMP/aecc52fecfbe34ff99199997d1eba49ed630424d888098563b502e8ffc1698b8?"
-                          className="shrink-0 w-5 aspect-square"
-                        />
-                        <div className="my-auto">Total Feedback</div>
-                      </div>
-                    </div>
-                    <div className="flex flex-col grow shrink-0 basis-0 w-fit">
-                      <div className="flex gap-0 text-sm text-white max-md:pr-5">
-                        <div className="justify-center px-2.5 py-2 whitespace-nowrap bg-blue-500 border border-solid border-neutral-400">
-                          Category
-                        </div>
-                        <div className="flex gap-2.5 py-px whitespace-nowrap bg-blue-500 border border-solid border-neutral-400">
-                          <div className="shrink-0 w-px bg-white border border-white border-solid h-[25px]" />
-                          <div className="my-auto">Date</div>
-                        </div>
-                        <div className="flex gap-2 py-px bg-blue-500 border border-solid border-neutral-400">
-                          <div className="shrink-0 w-px bg-white border border-white border-solid h-[25px]" />
-                          <div className="flex-auto">Customer Type</div>
-                        </div>
-                      </div>
-                      <div className="flex gap-5 items-start mt-3.5 text-xs font-semibold text-black">
-                        <div className="flex flex-1 gap-0.5">
-                          <img
-                            loading="lazy"
-                            src="https://cdn.builder.io/api/v1/image/assets/TEMP/30c953d26efe96b802276b5346c7266f0cc4c4e22a5c482a87af22b120ae517a?"
-                            className="shrink-0 w-5 aspect-square"
-                          />
-                          <div className="my-auto">Positive Feedback</div>
-                        </div>
-                        <div className="flex flex-1 gap-0.5">
-                          <img
-                            loading="lazy"
-                            src="https://cdn.builder.io/api/v1/image/assets/TEMP/209a4494f646c060dbd284b7da7adfbe91adef833ddffc0915b2a5435ebd30d1?"
-                            className="shrink-0 w-5 aspect-square"
-                          />
-                          <div className="my-auto">Negative Feedback</div>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                  <div className="overflow-hidden px-10 pb-2.5 mt-9 max-md:px-5 max-md:max-w-full">
-                    <div className="flex gap-5 max-md:flex-col max-md:gap-0">
-                      <div className="flex flex-col w-[68%] max-md:ml-0 max-md:w-full">
-                        <div className="flex grow gap-5 max-md:mt-10">
-                          <div className="shrink-0 w-0.5 border-2 border-solid bg-zinc-300 border-zinc-300 h-[295px]" />
-                          <div className="flex flex-col grow shrink-0 self-end mt-40 basis-0 w-fit max-md:mt-10">
-                            <div className="flex flex-col self-end w-[71px]">
-                              <div className="shrink-0 rounded-full border-2 border-green-600 border-solid bg-white bg-opacity-0 h-[9px] stroke-[2px] w-[9px]" />
-                              <div className="flex gap-5 justify-between items-start mt-5">
-                                <div className="shrink-0 mt-1.5 rounded-full border-2 border-red-500 border-solid bg-white bg-opacity-0 h-[9px] stroke-[2px] w-[9px]" />
-                                <div className="shrink-0 rounded-full border-2 border-green-600 border-solid bg-white bg-opacity-0 h-[9px] stroke-[2px] w-[9px]" />
-                              </div>
-                            </div>
-                            <div className="shrink-0 mt-2.5 rounded-full border-2 border-red-500 border-solid bg-white bg-opacity-0 h-[9px] stroke-[2px] w-[9px]" />
-                            <div className="flex gap-5 justify-between items-start self-center mt-6 w-[71px]">
-                              <div className="shrink-0 rounded-full border-2 border-red-500 border-solid bg-white bg-opacity-0 h-[9px] stroke-[2px] w-[9px]" />
-                              <div className="shrink-0 mt-1 rounded-full border-2 border-green-600 border-solid bg-white bg-opacity-0 h-[9px] stroke-[2px] w-[9px]" />
-                            </div>
-                            <div className="flex gap-5 justify-between items-start mt-6">
-                              <div className="shrink-0 rounded-full border-2 border-green-600 border-solid bg-white bg-opacity-0 h-[9px] stroke-[2px] w-[9px]" />
-                              <div className="shrink-0 mt-2 rounded-full border-2 border-red-500 border-solid bg-white bg-opacity-0 h-[9px] stroke-[2px] w-[9px]" />
-                            </div>
-                          </div>
-                        </div>
-                      </div>
-                      <div className="flex flex-col ml-5 w-[32%] max-md:ml-0 max-md:w-full">
-                        <div className="flex grow gap-5 justify-between mt-8 max-md:mt-10">
-                          <div className="shrink-0 my-auto rounded-full border-2 border-green-600 border-solid bg-white bg-opacity-0 h-[9px] stroke-[2px] w-[9px]" />
-                          <div className="flex flex-col">
-                            <div className="text-2xl text-yellow-600">
-                              120
-                              <span className="text-sm text-yellow-600">High</span>
-                            </div>
-                            <div className="flex gap-5 max-md:pr-5">
-                              <div className="flex flex-col flex-1 pt-2.5 pb-14 bg-orange-100">
-                                <div className="shrink-0 rounded-full border-2 border-green-600 border-solid bg-white bg-opacity-0 h-[9px] stroke-[2px]" />
-                                <div className="shrink-0 mt-40 rounded-full border-2 border-red-500 border-solid bg-white bg-opacity-0 h-[9px] stroke-[2px] max-md:mt-10" />
-                              </div>
-                              <div className="flex flex-col flex-1 my-auto">
-                                <div className="shrink-0 rounded-full border-2 border-green-600 border-solid bg-white bg-opacity-0 h-[9px] stroke-[2px] w-[9px]" />
-                                <div className="shrink-0 mt-24 rounded-full border-2 border-red-500 border-solid bg-white bg-opacity-0 h-[9px] stroke-[2px] w-[9px] max-md:mt-10" />
-                              </div>
-                            </div>
-                          </div>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                  <div className="flex gap-5 self-center px-5 mt-1 text-xs font-medium text-black whitespace-nowrap max-md:flex-wrap">
-                    <div className="grow">Mon</div>
-                    <div>Tue</div>
-                    <div>Wed</div>
-                    <div>Thu</div>
-                    <div>Fri</div>
-                    <div>Sat</div>
-                    <div>Sun</div>
-                    <div>Mon</div>
-                  </div>
-                </div>
-              </div>
+              <div>graph</div>
           <div className="flex flex-col ml-5 w-[44%] max-md:ml-0 max-md:w-full">
             <div className="flex flex-col self-stretch px-5 my-auto text-black max-md:mt-9 max-md:max-w-full">
               <div className="text-2xl font-medium max-md:max-w-full">
