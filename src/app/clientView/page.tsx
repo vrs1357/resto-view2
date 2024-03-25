@@ -3,7 +3,10 @@ import Image from "next/image";
 import React from "react";
 import Chart from "./chart";
 import { create } from "domain";
-const { MongoClient, ObjectId } = require("mongodb");
+
+const { MongoClient, ServerApiVersion } = require("mongodb");
+const credentials = 'X509-cert-8037683491231527563.pem';
+
 var totalFeedback: number;
 var happyPPl: number;
 var sadPPl: number;
@@ -13,6 +16,8 @@ var numPromoters: number;
 var numDemoters: number;
 var numPassive: number;
 const graphType = 0;
+
+// process data from DB
 async function createBarChart(type: Number) {
   happyPPl = 0;
   sadPPl = 0;
@@ -363,13 +368,16 @@ async function createBarChart(type: Number) {
     );
   }
   
-
+// get data from DB
 async function dbReader(request: any) {
-  const client = new MongoClient("mongodb://127.0.0.1:27017");
+  const client = new MongoClient('mongodb+srv://resto-view-db.apwp3jy.mongodb.net/?authSource=%24external&authMechanism=MONGODB-X509&retryWrites=true&w=majority&appName=resto-view-db', {
+    tlsCertificateKeyFile: credentials,
+    serverApi: ServerApiVersion.v1
+  });
   try {
-    let database = client.db("resto-view-db");
     await client.connect();
     console.log("Connected to DB");
+    let database = client.db("resto-view-db");
     let reviews = database.collection("reviews");
     const query = { Date: request };
     const toReturn = await reviews.find(query).toArray();

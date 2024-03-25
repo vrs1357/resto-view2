@@ -30,7 +30,7 @@ const NotificationButton = () => (
 const CutomersButton = () => (
   <div className="flex content-center gap-2 ml-7">
     <FaPeoplePulling className="self-center size-5" />
-    <p className="self-center">Customers</p>
+    <p className="self-center">Customer Interface</p>
   </div>
 );
 
@@ -59,10 +59,11 @@ export default function NavBar() {
           height={50}
           className="my-4"
         />
-        <h1 className="self-center">Restaurant Profile</h1>
+        <h1 className="self-center text-3xl">restoview</h1>
       </div>
-
-      <HomeButton />
+      <Link href={"/"}>
+        <HomeButton />
+      </Link>
       <Link href={"/clientView"}>
         <AnalyticsButton />
       </Link>
