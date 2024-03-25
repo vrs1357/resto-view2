@@ -11,6 +11,7 @@ var totalRating: number;
 var netPromoterScore: number;
 var numPromoters: number;
 var numDemoters: number;
+var numPassive: number;
 const graphType = 0;
 async function createBarChart(type: Number) {
   happyPPl = 0;
@@ -19,6 +20,7 @@ async function createBarChart(type: Number) {
   totalRating = 0;
   numPromoters = 0;
   numDemoters = 0;
+  numPassive = 0;
 
   // const svgRef = useRef();
   let arr1, arr2, arr3, arr4, arr5, arr6, arr7;
@@ -96,9 +98,15 @@ async function createBarChart(type: Number) {
       if(day1.at(i) > 4) {
         numPromoters++;
       }
+      else {
+        numPassive++;
+      }
     } else {
       if(day1.at(i) < 2){
         numDemoters++;
+      }
+      else {
+        numPassive++;
       }
       numNeg++;
     }
@@ -122,9 +130,15 @@ async function createBarChart(type: Number) {
       if(day2.at(i) > 4) {
         numPromoters++;
       }
+      else {
+        numPassive++;
+      }
     } else {
       if(day2.at(i) < 2){
         numDemoters++;
+      }
+      else {
+        numPassive++;
       }
       numNeg++;
     }
@@ -144,9 +158,15 @@ async function createBarChart(type: Number) {
       if(day3.at(i) > 4) {
         numPromoters++;
       }
+      else {
+        numPassive++;
+      }
     } else {
       if(day3.at(i) < 2){
         numDemoters++;
+      }
+      else {
+        numPassive++;
       }
       numNeg++;
     }
@@ -166,9 +186,15 @@ async function createBarChart(type: Number) {
       if(day4.at(i) > 4) {
         numPromoters++;
       }
+      else {
+        numPassive++;
+      }
     } else {
       if(day4.at(i) < 2){
         numDemoters++;
+      }
+      else {
+        numPassive++;
       }
       numNeg++;
     }
@@ -188,9 +214,15 @@ async function createBarChart(type: Number) {
       if(day5.at(i) > 4) {
         numPromoters++;
       }
+      else {
+        numPassive++;
+      }
     } else {
       if(day5.at(i) < 2){
         numDemoters++;
+      }
+      else {
+        numPassive++;
       }
       numNeg++;
     }
@@ -210,9 +242,15 @@ async function createBarChart(type: Number) {
       if(day6.at(i) > 4) {
         numPromoters++;
       }
+      else {
+        numPassive++;
+      }
     } else {
       if(day6.at(i) < 2){
         numDemoters++;
+      }
+      else {
+        numPassive++;
       }
       numNeg++;
     }
@@ -232,9 +270,15 @@ async function createBarChart(type: Number) {
       if(day7.at(i) > 4) {
         numPromoters++;
       }
+      else {
+        numPassive++;
+      }
     } else {
       if(day7.at(i) < 2){
         numDemoters++;
+      }
+      else {
+        numPassive++;
       }
       numNeg++;
     }
@@ -270,6 +314,7 @@ async function createBarChart(type: Number) {
           title: "Total Population",
           minValue: data7[0],
           maxValue: data1[0],
+          ticks: [data1[0], data2[0], data3[0], data4[0], data5[0], data6[0], data7[0]],
         },
         colors: ['blue'],
       },
@@ -277,8 +322,8 @@ async function createBarChart(type: Number) {
     return (
       <Chart
         chartType="Bar"
-        width="100%"
-        height="400px"
+        // width="75%"
+        height="300px"
         data={totalData}
         options={options}
       />
@@ -292,6 +337,7 @@ async function createBarChart(type: Number) {
           title: "Total Population",
           minValue: data7[0],
           maxValue: data1[0],
+          ticks: [data1[0], data2[0], data3[0], data4[0], data5[0], data6[0], data7[0]],
         },
         colors: ['green', 'red'],
       },
@@ -299,8 +345,8 @@ async function createBarChart(type: Number) {
     return (
       <Chart
         chartType="Line"
-        width="100%"
-        height="400px"
+        // width="100%"
+        height="300px"
         data={posnegData}
         options={options}
       />
@@ -310,7 +356,7 @@ async function createBarChart(type: Number) {
       <Chart
         chartType="Bar"
         width="100%"
-        height="400px"
+        height="300px"
         data={totalData}
         options={options}
       />
@@ -475,7 +521,7 @@ export default async function restaurantView() {
                   <div className="text-2xl font-medium">Net Promoter Score</div>
                   <div className="mt-1 text-md">% Promoters - % Detractors</div>
                   <div className="self-center mt-5 text-6xl max-md:text-4xl mb-10 mr-20">
-                    +{Math.round((numPromoters - numDemoters)*100/(numPromoters+numDemoters))}
+                    +{Math.round((numPromoters - numDemoters)*100/(numPromoters+numDemoters+numPassive))}
                   </div>
                 </div>
               </div>
@@ -490,7 +536,7 @@ export default async function restaurantView() {
                   {/* TODO: Fix value */}
                   <div className="flex flex-col">
                     <div className="text-lg">Promoters</div>
-                    <div className="mt-2 text-4xl ml-4">{Math.round(numPromoters*100/(numDemoters+numPromoters))}%</div>
+                    <div className="mt-2 text-4xl ml-4">{Math.round(numPromoters*100/(numDemoters+numPassive+numPromoters))}%</div>
                   </div>
                 </div>
               </div>
@@ -503,7 +549,7 @@ export default async function restaurantView() {
                   />
                   <div className="flex flex-col">
                     <div className="text-lg">Detractors</div>
-                    <div className="self-center mt-2 ml-4 text-4xl">{Math.round(numDemoters*100/(numPromoters+numDemoters))}%</div>
+                    <div className="self-center mt-2 ml-4 text-4xl">{Math.round(numDemoters*100/(numPassive+numPromoters+numDemoters))}%</div>
                   </div>
                 </div>
               </div>
@@ -516,7 +562,7 @@ export default async function restaurantView() {
                   />
                   <div className="flex flex-col">
                     <div className="text-lg">Passive</div>
-                    <div className="mt-2 ml-4 text-4xl">0%</div>
+                    <div className="mt-2 ml-4 text-4xl">{Math.round(numPassive*100/(numPassive+numDemoters+numPromoters))}%</div>
                   </div>
                 </div>
               </div>
@@ -532,15 +578,14 @@ export default async function restaurantView() {
           <div className="self-center mt-4 w-full max-w-[1020px] max-md:max-w-full">
             <div className="flex gap-5 max-md:flex-col max-md:gap-0">
               {/* TODO: d3.js Graphs GO HERE */}
-              {graph}
-              {graph2}
-              <div className="flex flex-col ml-5 w-[44%] max-md:ml-0 max-md:w-full">
-                <div className="flex flex-col self-stretch px-5 my-auto text-black max-md:mt-9 max-md:max-w-full">
-                  
-                  {/* TODO: better table data representation, also better way to do in general(d3.js?) */}
-
-                </div>
+              <div className="align-left mr-10">
+                {graph}
               </div>
+              <div className="align-right ml-10">
+                {graph2}
+              </div>
+              
+              
             </div>
           </div>
         </div>
