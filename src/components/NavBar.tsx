@@ -61,14 +61,14 @@ export default function NavBar() {
         />
         <h1 className="self-center text-3xl">restoview</h1>
       </div>
-      <Link href={"/resto-view/homeView"}>
+      <Link href={"/homeView"}>
         <HomeButton />
       </Link>
-      <Link href={"/resto-view/clientView"}>
+      <Link href={"/clientView"}>
         <AnalyticsButton />
       </Link>
       <NotificationButton />
-      <Link href={"/resto-view/userView"}>
+      <Link href={"/userView"}>
         <CutomersButton />
       </Link>
 
