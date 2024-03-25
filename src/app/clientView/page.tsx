@@ -3,9 +3,8 @@ import Image from "next/image";
 import React from "react";
 import Chart from "./chart";
 import { create } from "domain";
+import { readReview } from "@/services/helpers";
 
-const { MongoClient, ServerApiVersion } = require("mongodb");
-const credentials = 'X509-cert-8037683491231527563.pem';
 
 var totalFeedback: number;
 var happyPPl: number;
@@ -44,49 +43,49 @@ async function createBarChart(type: Number) {
   var day6 = new Array();
   var day7 = new Array();
   // obtaining data
-  arr1 = await dbReader(daysSinceStartOfYear - 1);
+  arr1 = await readReview(daysSinceStartOfYear);
   if (arr1) {
     arr1.forEach((review: any) => {
       day1.push(review.Score);
       totalRating += review.Score;
     });
   }
-  arr2 = await dbReader(daysSinceStartOfYear - 2);
+  arr2 = await readReview(daysSinceStartOfYear - 1);
   if (arr2) {
     arr2.forEach((review: any) => {
       day2.push(review.Score);
       totalRating += review.Score;
     });
   }
-  arr3 = await dbReader(daysSinceStartOfYear - 3);
+  arr3 = await readReview(daysSinceStartOfYear - 2);
   if (arr3) {
     arr3.forEach((review: any) => {
       day3.push(review.Score);
       totalRating += review.Score;
     });
   }
-  arr4 = await dbReader(daysSinceStartOfYear - 4);
+  arr4 = await readReview(daysSinceStartOfYear - 3);
   if (arr4) {
     arr4.forEach((review: any) => {
       day4.push(review.Score);
       totalRating += review.Score;
     });
   }
-  arr5 = await dbReader(daysSinceStartOfYear - 5);
+  arr5 = await readReview(daysSinceStartOfYear - 4);
   if (arr5) {
     arr5.forEach((review: any) => {
       day5.push(review.Score);
       totalRating += review.Score;
     });
   }
-  arr6 = await dbReader(daysSinceStartOfYear - 6);
+  arr6 = await readReview(daysSinceStartOfYear - 5);
   if (arr6) {
     arr6.forEach((review: any) => {
       day6.push(review.Score);
       totalRating += review.Score;
     });
   }
-  arr7 = await dbReader(daysSinceStartOfYear - 7);
+  arr7 = await readReview(daysSinceStartOfYear - 6);
   if (arr7) {
     arr7.forEach((review: any) => {
       day7.push(review.Score);
@@ -367,28 +366,6 @@ async function createBarChart(type: Number) {
       />
     );
   }
-  
-// get data from DB
-async function dbReader(request: any) {
-  const client = new MongoClient('mongodb+srv://resto-view-db.apwp3jy.mongodb.net/?authSource=%24external&authMechanism=MONGODB-X509&retryWrites=true&w=majority&appName=resto-view-db', {
-    tlsCertificateKeyFile: credentials,
-    serverApi: ServerApiVersion.v1
-  });
-  try {
-    await client.connect();
-    console.log("Connected to DB");
-    let database = client.db("resto-view-db");
-    let reviews = database.collection("reviews");
-    const query = { Date: request };
-    const toReturn = await reviews.find(query).toArray();
-    await client.close();
-    return toReturn;
-  } catch {
-    await client.close();
-    console.log("error - see stack trace");
-    return new Array(0);
-  }
-}
 
 export default async function restaurantView() {
 
