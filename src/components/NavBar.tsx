@@ -53,7 +53,7 @@ export default function NavBar() {
     <nav className="fixed top-0 left-0 w-[240px] flex flex-col bg-black h-full text-white gap-5">
       <div className="flex content-center gap-2 m-4">
         <Image
-          src="/assets/mainicon.jpg"
+          src="/assets/resto-logo.png"
           alt="main icon"
           width={50}
           height={50}
