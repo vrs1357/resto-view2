@@ -7,7 +7,7 @@ export default function Spinner() {
                 color="#073763"
                 width="300"
                 visible={true}
-                aria-Label="falling-circles-loading"
+                aria-label="falling-circles-loading"
             />
         </div>
     );
